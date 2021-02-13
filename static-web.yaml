@@ -16,4 +16,4 @@ spec:
     - key: "key"
       operator: "Equal"
       value: "Prom"
-      effect: "NoExecute"
+      effect: "NoSchedule"
