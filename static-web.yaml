@@ -13,6 +13,6 @@ spec:
           containerPort: 80
           protocol: TCP
   tolerations:
-    - key: dedicated
+    - key: dedicat
       operator: Exists
       effect: NoSchedule
