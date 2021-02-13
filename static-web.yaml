@@ -12,3 +12,8 @@ spec:
         - name: web
           containerPort: 80
           protocol: TCP
+  tolerations:
+    - key: "key"
+      operator: "Equal"
+      value: "Prom"
+      effect: "NoExecute"
