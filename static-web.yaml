@@ -14,5 +14,5 @@ spec:
           protocol: TCP
   tolerations:
     - key: "key"
-      operator: "Exist"
+      operator: "Exists"
       effect: "NoSchedule"
