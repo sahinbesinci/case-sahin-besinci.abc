@@ -13,6 +13,7 @@ spec:
           containerPort: 80
           protocol: TCP
   tolerations:
-    - key: "key"
-      operator: "Exists"
-      effect: "NoSchedule"
+    - key: dedicated
+      operator: Equal
+      value: Prom
+      effect: NoSchedule
