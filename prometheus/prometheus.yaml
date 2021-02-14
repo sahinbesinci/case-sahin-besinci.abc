@@ -1,23 +1,20 @@
 global:
-  scrape_interval: "15s"     # By default, scrape targets every 15 seconds.
-  evaluation_interval: "15s" # By default, evaluate rules every 15 seconds.
+  scrape_interval: "15s"
+  evaluation_interval: "15s"
 
 scrape_configs:
+  honor_labels: true
+  metrics_path: '/federate'
+
 - job_name: "prometheus"
   scrape_interval: "15s"
   metrics_path: "/metrics"
   static_configs:
   - targets: ["localhost:9090"]
 
-- job_name: "K8s Cadvisor"
+- job_name: "K8s Metrics"
   scrape_interval: "15s"
   metrics_path: "/metrics"
   static_configs:
-  - targets: ["10.96.0.10:4001"] #Cadvisor
-
-- job_name: "K8s APIserver"
-  scrape_interval: "15s"
-  metrics_path: "/metrics"
-  static_configs:
-  - targets: ["10.96.0.10:8888"] #APIserver
+  - targets: ["8.208.93.32:9100"]
 
