@@ -13,14 +13,14 @@ spec:
           args:
             - "--storage.tsdb.retention=6h"
             - "--config.file=/etc/prometheus/prometheus.yaml"
-            - "--storage.tsdb.path=/prometheus/"
+            - "--storage.tsdb.path=/prometheus"
           ports:
             - containerPort: 9090
           volumeMounts:
             - name: prometheus-config-volume
-              mountPath: /etc/prometheus/
+              mountPath: /etc/prometheus
             - name: prometheus-storage-volume
-              mountPath: /prometheus/
+              mountPath: /prometheus
       volumes:
         - name: prometheus-config-volume
           configMap:
