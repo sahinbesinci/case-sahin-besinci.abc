@@ -1,5 +1,5 @@
-## 1.1 - Kubernetes Kurulumu [**Reference**](https://enterprisecoding.com/centos-7-uzerine-kubernetes-kurulum/)
-## 1.2 - Server 0 da sadece pod çalışacak şekilde tanımlamak için [**Reference**](https://banzaicloud.com/blog/k8s-taints-tolerations-affinities/)
+## 1.1 - Kubernetes Kurulumu [**#**](https://enterprisecoding.com/centos-7-uzerine-kubernetes-kurulum/)
+## 1.2 - Server 0 da sadece pod çalışacak şekilde tanımlamak için [**#**](https://banzaicloud.com/blog/k8s-taints-tolerations-affinities/)
 * $ kubectl taint nodes server-sahin-besinci-0 dedicated=true:NoSchedule
 * $ kubectl edit node server-sahin-besinci-0
         …  server-sahin-besinci-0-affinity: "true"
@@ -22,11 +22,11 @@
                   values:
                   - "true"
 
-## 1.3 ve 1.4 - ingress Prometheus Kurulumu [**Reference**](https://github.com/sahinbesinci/case-sahin-besinci.abc/tree/master/prometheus)
+## 1.3 ve 1.4 - ingress Prometheus Kurulumu [**#**](https://github.com/sahinbesinci/case-sahin-besinci.abc/tree/master/prometheus)
       http://8.208.93.32:30900/ (internal) - external durumda açılmıştır. Testlerin yapıldıktan sonra internal olacak şekilde erişimi kapatılabilir.
       
 
-## 2. - Consul Kurulumu: [**Reference**](https://devopscube.com/setup-consul-cluster-guide/)
+## 2. - Consul Kurulumu: [**#**](https://devopscube.com/setup-consul-cluster-guide/)
       Native olarak Server 2 de kurulmuştur.
       Consul UI: http://8.208.92.21:8500/ui/us-central/services
 
@@ -42,16 +42,16 @@
       ….
   }
   
-## 3. -  Federation Prometheus Kurulumu [**Reference**](https://devopscube.com/install-configure-prometheus-linux/)
+## 3. -  Federation Prometheus Kurulumu [**#**](https://prometheus.io/docs/prometheus/latest/federation/)
 * $ tar xvfz prometheus-*.tar.gz
 * $ cd prometheus-*
 
-## 3.1 - Prometheus register edilir [**Reference**](https://yetiops.net/posts/prometheus-consul-node_exporter/)
+## 3.1 - Prometheus register edilir [**#**](https://yetiops.net/posts/prometheus-consul-node_exporter/)
 * $ consul services register consule-register-prometheus-service.json
 * $ consul catalog services
       Consul UI: http://8.208.92.21:8500/ui/us-central/services
     
-## 4. - Grafana Kurulumu ve External Prometheus datasource eklenmesi [**Reference**](https://grafana.com/grafana/download)
+## 4. - Grafana Kurulumu ve External Prometheus datasource eklenmesi [**#**](https://grafana.com/grafana/download)
 * $ service grafana-server start
 * $ service grafana-server status
 * $ /sbin/chkconfig --add grafana-server
