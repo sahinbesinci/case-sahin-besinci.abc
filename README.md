@@ -38,25 +38,25 @@ Native olarak Server 2 de kurulmuştur.
 Consul UI: http://8.208.92.21:8500/ui/us-central/services
 
 * $ sudo vi /etc/consul.d/config.json
-  {
-      "bootstrap_expect": 1,
-      ….
-      "encrypt": "xxxx/xxxx/xxxx/xxxx/t/xxxx=",
-      ….
-      "start_join": [
-          "192.168.0.86"
-      ],
-      ….
-  }
+
+      {
+          "bootstrap_expect": 1,
+          ….
+          "encrypt": "xxxx/xxxx/xxxx/xxxx/t/xxxx=",
+          ….
+          "start_join": [
+              "192.168.0.86"
+          ],
+          ….
+      }
   
 ## 3. -  Federation Prometheus Kurulumu [**#**](https://prometheus.io/docs/prometheus/latest/federation/)
-* $ tar xvfz prometheus-*.tar.gz
-* $ cd prometheus-*
+Fdr. Prometheus: http://8.208.92.21:9090/
 
 ## 3.1 - Prometheus register edilir [**#**](https://yetiops.net/posts/prometheus-consul-node_exporter/)
 * $ consul services register consule-register-prometheus-service.json
 * $ consul catalog services
-* 
+
 Consul UI: http://8.208.92.21:8500/ui/us-central/services
     
 ## 4. - Grafana Kurulumu ve External Prometheus datasource eklenmesi [**#**](https://grafana.com/grafana/download)
