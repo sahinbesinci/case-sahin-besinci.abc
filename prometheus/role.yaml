@@ -5,7 +5,14 @@ metadata:
 rules:
   - apiGroups: [""]
     resources:
+      - node
       - services
       - endpoints
       - pods
     verbs: ["get", "list", "watch"]
+  - apiGroups:
+    - extensions
+    resources:
+    - ingresses
+    verbs: ["get", "list", "watch"]
+

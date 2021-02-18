@@ -1,0 +1,76 @@
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: kube-state-metrics
+  namespace: ns-kube-state-metrics
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: kube-state-metrics
+  namespace: project-kube-state-metrics
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: view
+subjects:
+  - kind: ServiceAccount
+    name: kube-state-metrics
+    namespace: ns-kube-state-metrics
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kube-state-metrics
+spec:
+  selector:
+    matchLabels:
+      app: kube-state-metrics
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: kube-state-metrics
+    spec:
+      serviceAccountName: prometheus-server
+      containers:
+      - name: kube-state-metrics
+        args:
+            - '--resources=pods'
+            - '--namespaces=project-kube-state-metrics'
+        image: quay.io/coreos/kube-state-metrics:v1.2.0
+        ports:
+        - containerPort: 8080
+          name: monitoring
+      tolerations:
+        - key: "dedicated"
+          operator: "Equal"
+          value: "true"
+          effect: "NoSchedule"
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: server-sahin-besinci-0-affinity
+                operator: In
+                values:
+                - "true"
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: kube-state-metrics
+spec:
+  selector:
+    app: kube-state-metrics
+  type: LoadBalancer
+  ports:
+  - protocol: TCP
+    port: 8080
+    targetPort: 8080
+

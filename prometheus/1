@@ -9,9 +9,9 @@ scrape_configs:
   static_configs:
   - targets: ["localhost:9090"]
 
-- job_name: "kube-state-metrics"
+- job_name: "K8s Metrics"
   scrape_interval: "15s"
   metrics_path: "/metrics"
   static_configs:
-  - targets: ["10.244.1.38:8081"]
+  - targets: ["10.110.162.198:8080"]
 

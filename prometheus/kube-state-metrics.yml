@@ -1,0 +1,51 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kube-state-metrics
+  namespace: ingress-nginx
+spec:
+  selector:
+    matchLabels:
+      app: kube-state-metrics
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: kube-state-metrics
+    spec:
+      serviceAccountName: prometheus-server
+      containers:
+      - name: kube-state-metrics
+        image: quay.io/coreos/kube-state-metrics:v1.2.0
+        ports:
+        - containerPort: 8080
+          name: monitoring
+      tolerations:
+        - key: "dedicated"
+          operator: "Equal"
+          value: "true"
+          effect: "NoSchedule"
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: server-sahin-besinci-0-affinity
+                operator: In
+                values:
+                - "true"
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: kube-state-metrics
+  namespace: ingress-nginx
+spec:
+  selector:
+    app: kube-state-metrics
+  type: LoadBalancer
+  ports:
+  - protocol: TCP
+    port: 8080
+    targetPort: 8080
