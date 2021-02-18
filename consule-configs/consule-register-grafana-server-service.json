@@ -1,0 +1,7 @@
+{
+  "service":
+  {"name": "grafana",
+   "tags": ["grafana", "grafana-server"],
+   "port": 3000
+  }
+}
